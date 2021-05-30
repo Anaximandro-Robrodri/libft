@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: robrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/30 15:51:47 by robrodri          #+#    #+#             */
+/*   Updated: 2021/05/30 15:51:49 by robrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 void	*ft_memchr(const void *s, int c, size_t n)
 {
@@ -10,8 +22,5 @@ void	*ft_memchr(const void *s, int c, size_t n)
 			return ((unsigned char *)s + i);
 		i++;
 	}
-	if (c != '\0')
-		return (0);
-	else
-		return ((unsigned char *)s);
+	return (0);
 }

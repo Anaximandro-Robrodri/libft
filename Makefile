@@ -33,7 +33,7 @@ SRCS	=	ft_memset.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c
 
-SRC_B	=	ft_lstnew_bonus.c \
+BONUS	=	ft_lstnew_bonus.c \
 			ft_lstadd_front_bonus.c \
 			ft_lstsize_bonus.c \
 			ft_lstlast_bonus.c \
@@ -43,7 +43,7 @@ SRC_B	=	ft_lstnew_bonus.c \
 			ft_lstiter_bonus.c \
 			ft_lstmap_bonus.c
 
-OBJS	= ${SRCS:.c=.o} ${SRC_B:.c=.o}
+OBJS	= ${SRCS:.c=.o} ${BONUS:.c=.o}
 NAME	= libft.a
 CC		= gcc
 RM		= rm -f
