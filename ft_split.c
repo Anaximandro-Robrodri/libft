@@ -13,8 +13,7 @@
 #include "libft.h"
 static char	**ft_allocate(char **dst)
 {
-	dst = malloc (sizeof(char **));
-	dst[0] = 0;
+	dst = ft_calloc (1, sizeof(char **));
 	return (dst);
 }
 
@@ -26,7 +25,6 @@ static void	ft_put_str (char **dst, char *src, int n, char c)
 	if (n == 1)
 	{
 		dst[0] = ft_strdup(src);
-		dst[1] = 0;
 	}
 	else
 	{
@@ -41,7 +39,6 @@ static void	ft_put_str (char **dst, char *src, int n, char c)
 			i++;
 		}
 		dst[i] = ft_strdup(aux);
-		dst[++i] = 0;
 	}
 }
 
@@ -88,7 +85,7 @@ char	**ft_split(char const *s, char c)
 		free (trim);
 		return (ft_allocate(str_mother));
 	}
-	str_mother = (char **) malloc ((n + 1) * (sizeof (char **)));
+	str_mother = ft_calloc((n + 1), (sizeof (char **)));
 	if (str_mother == 0)
 		return (0);
 	ft_put_str (str_mother, trim, n, c);

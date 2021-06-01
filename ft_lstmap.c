@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: robrodri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/30 15:56:28 by robrodri          #+#    #+#             */
-/*   Updated: 2021/05/30 15:56:29 by robrodri         ###   ########.fr       */
+/*   Created: 2021/05/31 10:55:31 by robrodri          #+#    #+#             */
+/*   Updated: 2021/05/31 10:55:35 by robrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-void	ft_putnbr_fd(int n, int fd)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char			z;
-	unsigned int	nb;
+	t_list	*ptr;
+	t_list	*first;
 
-	if (n == -2147483648)
+	if (lst == 0 || f == 0)
+		return (0);
+	first = 0;
+	while (lst)
 	{
-		write (fd, "-2147483648", 11);
-		return ;
+		ptr = (ft_lstnew((f)(lst-> content)));
+		if (ptr == 0)
+		{
+			ft_lstclear(&ptr, del);
+			return (0);
+		}
+		ft_lstadd_back(&first, ptr);
+		lst = lst-> next;
 	}
-	if (n < 0)
-	{
-		write (fd, "-", sizeof(char));
-		n = n * (-1);
-	}
-	nb = (unsigned int) n;
-	if (nb > 9)
-	{
-		ft_putnbr_fd((nb / 10), fd);
-		z = '0' + (nb % 10);
-		write (fd, &z, sizeof(char));
-	}
-	else
-	{
-		z = nb + '0';
-		write (fd, &z, sizeof(char));
-	}
+	return (first);
 }
