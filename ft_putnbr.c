@@ -1,26 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: robrodri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/30 15:53:19 by robrodri          #+#    #+#             */
-/*   Updated: 2021/06/08 14:58:24 by robrodri         ###   ########.fr       */
+/*   Created: 2021/05/30 15:56:28 by robrodri          #+#    #+#             */
+/*   Updated: 2021/06/12 17:42:56 by robrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_putnbr(int n)
 {
-	size_t	i;
+	char			z;
+	unsigned int	nb;
 
-	i = 0;
-	while (i < n && (s1[i] != '\0' || s2[i] != '\0'))
+	if (n == -2147483648)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		write (1, "-2147483648", 11);
+		return ;
 	}
-	return (0);
+	if (n < 0)
+	{
+		write (1, "-", sizeof(char));
+		n = n * (-1);
+	}
+	nb = (unsigned int) n;
+	if (nb > 9)
+	{
+		ft_putnbr(nb / 10);
+		z = '0' + (nb % 10);
+		write (1, &z, sizeof(char));
+	}
+	else
+	{
+		z = nb + '0';
+		write (1, &z, sizeof(char));
+	}
 }
