@@ -6,19 +6,11 @@
 /*   By: jalvarad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 08:00:27 by jalvarad          #+#    #+#             */
-/*   Updated: 2021/06/14 17:59:37 by robrodri         ###   ########.fr       */
+/*   Updated: 2021/06/14 18:16:21 by robrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-static int	ft_strlen(char *base)
-{
-	int	c;
 
-	c = 0;
-	while (base[c] != '\0')
-		c++;
-	return (c);
-}
+#include "libft.h"
 
 static int	gest_errors(char *base)
 {
@@ -34,7 +26,7 @@ static int	gest_errors(char *base)
 	while (base[e] != '\0' && base[f] != '\0' && d > 1 )
 	{
 		while (base[e] != '\0' && base[f] != '\0')
-		{	
+		{
 			if ((base[e] == base[f] && e != f) || (base[f] == '+'\
 				|| base[f] == '-'))
 			{
@@ -48,24 +40,29 @@ static int	gest_errors(char *base)
 	return (0);
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+int	ft_putnbr_base_long(unsigned long long nbr, char *base)
 {
-	int	a;
-	int	b;
+	int			a;
+	int			b;
+	static int	n;
 
+	n = 0;
 	if (gest_errors(base) == 0)
 	{
 		a = ft_strlen(base);
 		if (nbr > 0)
 		{
-			ft_putnbr_base(nbr / a, base);
+			ft_putnbr_base_long(nbr / a, base);
 			b = nbr % a;
 			write(1, &base[b], 1);
+			n++;
 		}
 		if (nbr < 0)
 		{
 			write(1, "-", 1);
-			ft_putnbr_base(-nbr, base);
+			ft_putnbr_base_long(-nbr, base);
+			n++;
 		}
 	}
+	return (n);
 }
