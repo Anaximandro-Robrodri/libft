@@ -6,12 +6,13 @@
 #    By: robrodri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/31 11:50:54 by robrodri          #+#    #+#              #
-#    Updated: 2021/05/31 12:43:23 by robrodri         ###   ########.fr        #
+#    Updated: 2021/08/18 11:56:27 by robrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 SRCS	=	ft_atoi.c \
+			get_next_line.c \
 			ft_bzero.c \
 			ft_calloc.c \
 			ft_isalnum.c \
